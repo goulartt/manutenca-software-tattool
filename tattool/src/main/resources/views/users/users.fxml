@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import de.jensd.fx.glyphs.octicons.OctIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root prefHeight="526.0" prefWidth="804.0" stylesheets="@../../css/application.css" type="javafx.scene.layout.BorderPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tattool.views.controller.user.UserController">
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+   <top>
+      <BorderPane prefHeight="79.0" prefWidth="774.0" style="-fx-background-color: #2B2B2B;" BorderPane.alignment="CENTER">
+         <left>
+            <VBox alignment="CENTER_LEFT" prefHeight="79.0" prefWidth="386.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="40.0" prefWidth="387.0" text="Usuários" textFill="#26a69a">
+                     <font>
+                        <Font name="Verdana" size="32.0" />
+                     </font>
+                  </Label>
+                  <Label text="Crie usuários para gerenciar o seu estúdio" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana" size="16.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="#ffca28" glyphName="COMMENT_OUTLINE" size="18" />
+                     </graphic>
+                  </Label>
+               </children>
+            </VBox>
+         </left>
+         <right>
+            <HBox alignment="CENTER_RIGHT" prefHeight="79.0" prefWidth="343.0" spacing="16.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXButton buttonType="RAISED" contentDisplay="TOP" onAction="#create" prefHeight="65.0" prefWidth="150.0" style="-fx-background-color: #009688; -fx-background-radius: 0;" text="Novo Usuário" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="ACCOUNT_PLUS" size="22" />
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </right>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+         </padding>
+         <bottom>
+            <VBox prefHeight="75.0" prefWidth="774.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXTextField fx:id="search" focusColor="#26a69a" labelFloat="true" promptText="Pesquisar" style="-fx-text-fill: #fff; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE">
+                     <font>
+                        <Font name="Verdana" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="26.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <Label fx:id="error" graphicTextGap="10.0" textFill="#e53935">
+                     <font>
+                        <Font name="Verdana" size="16.0" />
+                     </font>
+                     <graphic>
+                        <OctIconView fill="#e53935" glyphName="ISSUE_OPENED" size="22" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="16.0" top="16.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </bottom>
+         <effect>
+            <DropShadow color="#000000a0" height="22.0" radius="9.0" width="16.0" />
+         </effect>
+      </BorderPane>
+   </top>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <JFXTreeTableView fx:id="userTable" prefHeight="234.0" prefWidth="774.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <columnResizePolicy>
+                  <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </JFXTreeTableView>
+         </center>
+         <bottom>
+            <BorderPane prefHeight="55.0" prefWidth="774.0" BorderPane.alignment="CENTER">
+               <right>
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="55.0" prefWidth="472.0" spacing="16.0" BorderPane.alignment="TOP_LEFT">
+                     <children>
+                        <StackPane fx:id="dialogStack" alignment="BOTTOM_RIGHT" prefHeight="55.0" prefWidth="140.0">
+                           <children>
+                              <JFXButton buttonType="RAISED" graphicTextGap="10.0" onAction="#delete" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #f44336; -fx-background-radius: 0;" text="Excluir " textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana" size="16.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <graphic>
+                                    <MaterialDesignIconView fill="WHITE" glyphName="ACCOUNT_REMOVE" size="22" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </StackPane>
+                        <JFXButton fx:id="update" buttonType="RAISED" graphicTextGap="10.0" onAction="#update" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #009688; -fx-background-radius: 0;" text="Salvar" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                           <graphic>
+                              <Label graphicTextGap="0.0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <MaterialDesignIconView fill="WHITE" glyphName="ACCOUNT_CHECK" size="22" />
+                                 </graphic>
+                              </Label>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </right>
+            </BorderPane>
+         </bottom>
+         <BorderPane.margin>
+            <Insets top="12.0" />
+         </BorderPane.margin>
+      </BorderPane>
+   </center>
+</fx:root>

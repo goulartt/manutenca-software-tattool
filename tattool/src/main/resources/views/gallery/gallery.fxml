@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="804.0" stylesheets="@../../css/application.css" type="javafx.scene.layout.BorderPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tattool.views.controller.art.GalleryController">
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+   <center>
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: none;" styleClass="gallery-scroll-pane" stylesheets="@../../css/application.css" BorderPane.alignment="CENTER">
+         <content>
+            <BorderPane prefHeight="415.0" prefWidth="774.0">
+               <center>
+                  <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox fx:id="column1" prefHeight="200.0" prefWidth="193.5">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox fx:id="column2" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="193.5" />
+                        <VBox fx:id="column3" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="193.5" />
+                        <VBox fx:id="column4" layoutX="210.0" layoutY="10.0" prefHeight="415.0" prefWidth="191.0" />
+                     </children>
+                  </HBox>
+               </center>
+            </BorderPane>
+         </content>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets top="16.0" />
+         </padding>
+      </ScrollPane>
+   </center>
+   <top>
+      <BorderPane prefHeight="93.0" prefWidth="774.0" style="-fx-background-color: #2B2B2B;" BorderPane.alignment="CENTER">
+         <left>
+            <VBox alignment="CENTER_LEFT" prefHeight="79.0" prefWidth="545.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="40.0" prefWidth="387.0" text="Galeria de artes" textFill="#26a69a">
+                     <font>
+                        <Font name="Verdana" size="32.0" />
+                     </font>
+                  </Label>
+                  <Label text="Gerencie as artes de seu estúdio." textFill="WHITE">
+                     <font>
+                        <Font name="Verdana" size="16.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="#ffca28" glyphName="COMMENT_OUTLINE" size="18" />
+                     </graphic>
+                  </Label>
+               </children>
+            </VBox>
+         </left>
+         <right>
+            <HBox alignment="CENTER_RIGHT" prefHeight="79.0" prefWidth="153.0" spacing="16.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXButton buttonType="RAISED" contentDisplay="TOP" onAction="#create" prefHeight="65.0" prefWidth="150.0" style="-fx-background-color: #009688; -fx-background-radius: 0;" text="Cadastrar Arte" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <Label graphicTextGap="1.0" text="+" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="12.0" />
+                           </font>
+                           <graphic>
+                              <MaterialDesignIconView fill="WHITE" glyphName="IMAGE" size="22" />
+                           </graphic>
+                        </Label>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </right>
+         <bottom>
+            <JFXTextField fx:id="search" focusColor="#26a69a" labelFloat="true" promptText="Pesquisar" style="-fx-font-size: 16px; -fx-text-fill: #fff; -fx-prompt-text-fill: #fff;" unFocusColor="WHITE" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets top="32.0" />
+               </padding>
+            </JFXTextField>
+         </bottom>
+         <padding>
+            <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+         </padding>
+         <effect>
+            <DropShadow color="#0000009b" height="22.0" radius="9.0" width="16.0" />
+         </effect>
+      </BorderPane>
+   </top>
+</fx:root>

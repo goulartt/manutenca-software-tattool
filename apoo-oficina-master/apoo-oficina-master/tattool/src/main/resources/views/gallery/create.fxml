@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import de.jensd.fx.glyphs.octicons.OctIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="804.0" stylesheets="@../../css/application.css" type="javafx.scene.layout.BorderPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tattool.views.controller.art.CreateArtController">
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+   <top>
+      <BorderPane prefHeight="93.0" prefWidth="774.0" style="-fx-background-color: #2B2B2B;" BorderPane.alignment="CENTER">
+         <left>
+            <VBox alignment="CENTER_LEFT" prefHeight="79.0" prefWidth="545.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="40.0" prefWidth="387.0" text="Cadastrar nova arte" textFill="#26a69a">
+                     <font>
+                        <Font name="Verdana" size="32.0" />
+                     </font>
+                  </Label>
+                  <Label text="Preencha os campos abaixo e pressione cadastrar." textFill="WHITE">
+                     <font>
+                        <Font name="Verdana" size="16.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="#ffca28" glyphName="COMMENT_OUTLINE" size="18" />
+                     </graphic>
+                  </Label>
+               </children>
+            </VBox>
+         </left>
+         <right>
+            <HBox alignment="CENTER_RIGHT" prefHeight="79.0" prefWidth="153.0" spacing="16.0" BorderPane.alignment="CENTER" />
+         </right>
+         <padding>
+            <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+         </padding>
+         <effect>
+            <DropShadow color="#0000009c" height="22.0" radius="9.0" width="16.0" />
+         </effect>
+      </BorderPane>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXTextField fx:id="description" focusColor="#009688" labelFloat="true" onKeyPressed="#insertTag" promptText="Descrição" unFocusColor="#212121">
+               <font>
+                  <Font name="Verdana" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="32.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <Label fx:id="errorDescription" graphicTextGap="10.0" textFill="#e53935">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+               <graphic>
+                  <OctIconView fill="#e53935" glyphName="ISSUE_OPENED" size="18" />
+               </graphic>
+               <padding>
+                  <Insets bottom="-10.0" top="16.0" />
+               </padding>
+            </Label>
+            <BorderPane prefHeight="50.0" prefWidth="620.0">
+               <center>
+                  <JFXTextField fx:id="fileName" editable="false" focusColor="#009688" labelFloat="true" promptText="Imagem" unFocusColor="#212121" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Verdana" size="16.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets right="24.0" />
+                     </BorderPane.margin>
+                  </JFXTextField>
+               </center>
+               <right>
+                  <JFXButton buttonType="RAISED" graphicTextGap="6.0" onAction="#fileChooser" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: #009688; -fx-background-radius: 0;" text="Imagem" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Verdana" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="8.0" left="16.0" right="16.0" top="8.0" />
+                     </padding>
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="FILE_IMAGE" size="22" />
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </right>
+               <padding>
+                  <Insets top="32.0" />
+               </padding>
+            </BorderPane>
+            <Label fx:id="errorImage" graphicTextGap="10.0" textFill="#e53935">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+               <graphic>
+                  <OctIconView fill="#e53935" glyphName="ISSUE_OPENED" size="18" />
+               </graphic>
+               <padding>
+                  <Insets bottom="-10.0" top="16.0" />
+               </padding>
+            </Label>
+            <JFXTextField fx:id="tagInput" focusColor="#009688" labelFloat="true" onKeyPressed="#insertTag" promptText="Tag" unFocusColor="#212121">
+               <font>
+                  <Font name="Verdana" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="32.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <Label fx:id="errorTags" graphicTextGap="10.0" textFill="#e53935">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+               <graphic>
+                  <OctIconView fill="#e53935" glyphName="ISSUE_OPENED" size="18" />
+               </graphic>
+               <padding>
+                  <Insets bottom="-10.0" top="16.0" />
+               </padding>
+            </Label>
+            <HBox fx:id="tags" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+               <VBox.margin>
+                  <Insets top="26.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <BorderPane prefHeight="44.0" prefWidth="774.0" BorderPane.alignment="CENTER">
+         <right>
+            <JFXButton buttonType="RAISED" contentDisplay="RIGHT" onAction="#store" style="-fx-background-color: #009688; -fx-background-radius: 0;" text="Cadastrar" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Verdana" size="16.0" />
+               </font>
+               <padding>
+                  <Insets bottom="8.0" left="20.0" right="20.0" top="8.0" />
+               </padding>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="PLUS" size="16" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </right>
+         <left>
+            <JFXButton onAction="#back" style="-fx-background-color: #607D8B; -fx-background-radius: 0;" text="Voltar" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Verdana" size="16.0" />
+               </font>
+               <padding>
+                  <Insets bottom="8.0" left="20.0" right="20.0" top="8.0" />
+               </padding>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="ARROW_LEFT_BOLD" size="16" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </left>
+      </BorderPane>
+   </bottom>
+</fx:root>

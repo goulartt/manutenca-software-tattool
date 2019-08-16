@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import de.jensd.fx.glyphs.octicons.OctIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="640.0" stylesheets="@../../css/application.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <VBox prefHeight="60.0" prefWidth="720.0" style="-fx-background-color: #2B2B2B;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="65.0" prefWidth="688.0">
+                     <children>
+                        <Label fx:id="fileName" text="&lt;Descrição Da Arte&gt;" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+               </padding>
+            </VBox>
+         </top>
+         <center>
+            <JFXTabPane BorderPane.alignment="CENTER">
+               <tabs>
+                  <Tab text="Imagem">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #212121;">
+                           <children>
+                              <StackPane fx:id="imageStack" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ImageView fx:id="image" fitHeight="360.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+                                       <effect>
+                                          <DropShadow color="#00000066" height="15.0" radius="6.25" width="12.0" />
+                                       </effect>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                           </children>
+                           <padding>
+                              <Insets left="30.0" right="30.0" />
+                           </padding>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Informações">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane prefHeight="171.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <center>
+                                    <VBox prefHeight="197.0" prefWidth="720.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <Label text="Informações:" textFill="#26a69a">
+                                             <font>
+                                                <Font name="Verdana" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXTextField fx:id="description" focusColor="#009688" labelFloat="true" onKeyPressed="#insertTag" promptText="Descrição" unFocusColor="#212121">
+                                             <font>
+                                                <Font name="Verdana" size="16.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="26.0" />
+                                             </VBox.margin>
+                                          </JFXTextField>
+                                          <Label fx:id="errorDescription" graphicTextGap="10.0" textFill="#e53935">
+                                             <font>
+                                                <Font name="Verdana" size="14.0" />
+                                             </font>
+                                             <graphic>
+                                                <OctIconView fill="#e53935" glyphName="ISSUE_OPENED" size="18" />
+                                             </graphic>
+                                             <padding>
+                                                <Insets bottom="-10.0" top="16.0" />
+                                             </padding>
+                                          </Label>
+                                          <JFXTextField fx:id="tagInput" focusColor="#009688" labelFloat="true" onKeyPressed="#insertTag" promptText="Tag" unFocusColor="#212121">
+                                             <font>
+                                                <Font name="Verdana" size="16.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="36.0" />
+                                             </VBox.margin>
+                                          </JFXTextField>
+                                          <Label fx:id="errorTags" graphicTextGap="10.0" textFill="#e53935">
+                                             <font>
+                                                <Font name="Verdana" size="14.0" />
+                                             </font>
+                                             <graphic>
+                                                <OctIconView fill="#e53935" glyphName="ISSUE_OPENED" size="18" />
+                                             </graphic>
+                                             <padding>
+                                                <Insets bottom="-10.0" top="16.0" />
+                                             </padding>
+                                          </Label>
+                                          <HBox fx:id="tags" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+                                             <VBox.margin>
+                                                <Insets top="26.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                       </children>
+                                       <BorderPane.margin>
+                                          <Insets />
+                                       </BorderPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </center>
+                                 <bottom>
+                                    <HBox alignment="TOP_RIGHT">
+                                       <children>
+                                          <JFXButton buttonType="RAISED" graphicTextGap="6.0" onAction="#delete" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: #f44336; -fx-background-radius: 0;" text="Apagar" textFill="WHITE">
+                                             <font>
+                                                <Font name="Verdana" size="16.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets bottom="8.0" left="16.0" right="16.0" top="8.0" />
+                                             </padding>
+                                             <graphic>
+                                                <MaterialDesignIconView fill="WHITE" glyphName="DELETE" size="22" />
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <HBox.margin>
+                                                <Insets right="16.0" />
+                                             </HBox.margin>
+                                          </JFXButton>
+                                          <JFXButton buttonType="RAISED" graphicTextGap="6.0" onAction="#update" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: #009688; -fx-background-radius: 0;" text="Salvar" textFill="WHITE">
+                                             <font>
+                                                <Font name="Verdana" size="16.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets bottom="8.0" left="16.0" right="16.0" top="8.0" />
+                                             </padding>
+                                             <graphic>
+                                                <MaterialDesignIconView fill="WHITE" glyphName="CONTENT_SAVE" size="22" />
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </JFXButton>
+                                       </children>
+                                       <BorderPane.margin>
+                                          <Insets />
+                                       </BorderPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                 </bottom>
+                              </BorderPane>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+         </center>
+      </BorderPane>
+      <HBox alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <OctIconView fx:id="closeButton" fill="WHITE" glyphName="X" size="20" styleClass="close-button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </OctIconView>
+         </children>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+      </HBox>
+   </children>
+</AnchorPane>

@@ -237,8 +237,8 @@ public class SessionGridController {
     	JFXButton yes                 = new JFXButton("Sim");
     	JFXButton no                  = new JFXButton("Não");
     	
-    	dialogContent.setHeading(new Text("Tem certeza que quer excluir este usuário?"));
-    	dialogContent.setBody(new Text("Todos os dados deste usuário serão perdidos."));
+    	dialogContent.setHeading(new Text("Tem certeza que quer excluir essa sessão?"));
+    	dialogContent.setBody(new Text("Todos os dados dessa sessão serão perdidos."));
     	
     	yes.setCursor(Cursor.HAND);
     	no.setCursor(Cursor.HAND);

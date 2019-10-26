@@ -191,7 +191,7 @@ public class CreateEditCustomerController {
     
     void store(StackPane mainStack) {
     	if(this.customer.getId() == null) {
-    		if(validate()){
+    		if(validate(mainStack)){
         		Customer customer = MontaCustomer();
             	
             	rest.save(customer);
@@ -252,12 +252,38 @@ public class CreateEditCustomerController {
 		});
 		dialog.show();
 	}
+	
+	void errorDialog(StackPane mainStack) {
+		JFXDialogLayout dialogContent = new JFXDialogLayout();
+		JFXDialog dialog              = new JFXDialog(mainStack, dialogContent, JFXDialog.DialogTransition.CENTER, false);
+		JFXButton ok                  = new JFXButton("Ok");
+		
+		dialogContent.setHeading(new Text("Por favor, preencha todos campos em todas as abas!"));
+		
+		ok.setCursor(Cursor.HAND);
+		
+		ok.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				dialog.close();
+			}
+		});
+		
+		dialogContent.setActions(ok);
+		dialog.setOnDialogClosed(new EventHandler<JFXDialogEvent>() {
+			@Override
+			public void handle(JFXDialogEvent event) {
+				back((BorderPane) mainStack.lookup("#main"));
+			}
+		});
+		dialog.show();
+	}
     
     /*
      * 	##	VALIDACAO FORM
      */
     
-    boolean validate() {
+    boolean validate(StackPane mainStack) {
 		boolean validate = true;
 		boolean customer = false, contact = false, address = false;
 		
@@ -322,7 +348,8 @@ public class CreateEditCustomerController {
             }
         }
 
-	
+		if (!validate) 
+			errorDialog(mainStack);
 		
 		//Adicionar icone de erro nas Tabs
 		if(customer)

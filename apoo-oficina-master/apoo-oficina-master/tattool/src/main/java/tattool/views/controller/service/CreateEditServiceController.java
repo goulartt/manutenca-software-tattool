@@ -3,6 +3,8 @@ package tattool.views.controller.service;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -40,6 +42,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import tattool.domain.model.Art;
 import tattool.domain.model.Customer;
 import tattool.domain.model.Service;
 import tattool.domain.model.Session;
@@ -119,6 +122,8 @@ public class CreateEditServiceController {
     public Customer cliente = new Customer();
     
     private Service serviceCarregado = new Service();
+
+	private List<Art> artes = new ArrayList<>();
     
     /*
      * 	## INITIALIZE
@@ -191,7 +196,7 @@ public class CreateEditServiceController {
     		
     		service.setCustomer(cliente);  //verifica se tem cliente
     		service.setNameService(name.getText()); //obrigatorio
-    		
+    		service.setArts(artes);
     		service.setQuantSessions(Integer.parseInt(numberSessions.getText())); //tenta entender minha logica ai embaixo e faz validação
     		Service serviceSalvo = rest.save(service);
     		if(!numberSessions.getText().equals("0"))
@@ -435,14 +440,15 @@ public class CreateEditServiceController {
      * 	##	CLASSE DA LISTA DE ARTES
      */
     
-    public ArtListItem addArtItem(String text) {
-    	return new ArtListItem(text);
+    public ArtListItem addArtItem(Art a) {
+    	artes .add(a);
+    	return new ArtListItem(a);
     }
     
     private class ArtListItem extends Label {
     	
-    	ArtListItem(String text) {
-    		setText(text);
+    	ArtListItem(Art a) {
+    		setText(a.getDescription());
     		MaterialDesignIconView icon = new MaterialDesignIconView(MaterialDesignIcon.IMAGE);
     		icon.setGlyphSize(22);
     		setGraphic(icon);

@@ -58,6 +58,7 @@ public class UserController
     private List<User> userUpdate = new ArrayList<>();
     
     private UserRest rest = new UserRest();
+    
     private List<UserFX> userTest = new ArrayList<>();
     /*
      * 	##	INICIALIZACAO

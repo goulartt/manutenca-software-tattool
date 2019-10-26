@@ -2,6 +2,7 @@ package tattool.rest.consume;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import tattool.domain.model.Art;
+import tattool.domain.model.Session;
 import tattool.domain.model.Tag;
 import tattool.service.ArtService;
 import tattool.util.Constantes;
@@ -76,6 +78,14 @@ public class ArtRest {
 		rest.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 		return rest.getForObject(url,  Art[].class); 
 	
+	}
+
+	public List<Art> findByServiceId(Integer id) {
+		String url = Constantes.Api.URL_API+"/art/service/{codigo}";
+		Map<String, Integer> params = new HashMap<String, Integer>();
+	    params.put("codigo", id);
+	    rest.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+		return Arrays.asList(rest.getForObject(url, Art[].class, params));
 	}
 
 }

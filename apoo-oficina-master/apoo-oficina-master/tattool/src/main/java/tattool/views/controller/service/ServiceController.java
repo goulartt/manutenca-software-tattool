@@ -35,9 +35,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+import tattool.domain.model.Art;
 import tattool.domain.model.Service;
 import tattool.domain.model.Session;
 import tattool.domain.modelfx.ServiceFX;
+import tattool.rest.consume.ArtRest;
 import tattool.rest.consume.ServiceRest;
 import tattool.rest.consume.SessionRest;
 import tattool.util.ConvertModelToFX;
@@ -234,7 +236,9 @@ public class ServiceController {
 			FXMLLoader serviceLoader = new FXMLLoader(getClass().getResource("/views/services/show-service.fxml"));
 			ServiceFX service = serviceTable.getSelectionModel().getSelectedItem().getValue();
 			List<Session> sessions = new SessionRest().findByService(service.getId());
-			serviceLoader.setController(new ShowServiceController(service, sessions));
+			List<Art> artes = new ArtRest().findByServiceId(service.getId());
+			
+			serviceLoader.setController(new ShowServiceController(service, sessions, artes));
 			Region serviceContent = serviceLoader.load();
 			JFXDialog customerModal = new JFXDialog(mainStack, serviceContent, JFXDialog.DialogTransition.CENTER, false);
 			OctIconView closeButton = (OctIconView) mainStack.getScene().lookup("#closeButton");

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,8 +18,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.utfpr.tattool.api.apitattool.model.Art;
+import com.utfpr.tattool.api.apitattool.model.Service;
+import com.utfpr.tattool.api.apitattool.model.Session;
 import com.utfpr.tattool.api.apitattool.model.Tag;
 import com.utfpr.tattool.api.apitattool.repository.ArtRepository;
+import com.utfpr.tattool.api.apitattool.repository.ServiceRepository;
 import com.utfpr.tattool.api.apitattool.repository.TagRepository;
 import com.utfpr.tattool.api.apitattool.service.FileArchiveService;
 
@@ -35,6 +39,9 @@ public class ArtResource {
 	@Autowired TagRepository tagDao;
 	
 	@Autowired ArtRepository dao;
+
+	@Autowired
+	ServiceRepository serviceRepository;
 
 	
 	@PostMapping
@@ -84,5 +91,14 @@ public class ArtResource {
 		
 	}
 	
+	@GetMapping("/service/{codigo}")
+	@ApiOperation(value = "Busca as artes daquela serviço",response = Session[].class)
+	public ResponseEntity<?> relatorioHistorico(@PathVariable Integer codigo) {
+		Service servico = serviceRepository.findOne(codigo);
+		if(servico != null) {
+			return servico.getArts() != null ? ResponseEntity.ok(servico.getArts()) : ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.notFound().build();
+	}
 
 }

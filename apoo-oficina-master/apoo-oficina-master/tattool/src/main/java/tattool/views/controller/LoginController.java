@@ -31,6 +31,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import tattool.domain.model.User;
 import tattool.rest.consume.UserRest;
+import tattool.util.UserSession;
 
 public class LoginController implements Initializable {
 
@@ -132,7 +133,7 @@ public class LoginController implements Initializable {
 				try {
 
 					// New Stage dashboard
-
+					UserSession.userLogado = user;
 					Stage stage = new Stage();
 					FXMLLoader templateLoader = new FXMLLoader(getClass().getResource("/views/template/template.fxml"));
 					Scene scene = new Scene(new JFXDecorator(stage, templateLoader.load()), 1280, 750);

@@ -88,7 +88,6 @@ public class UserResource {
 	@PostMapping("/verify")
 	@ApiOperation(value = "Verifica se o usuario e senha estão corretos no bando de dados",response = User.class)
 	public ResponseEntity<User> verificaLogin(String usuario, String senha) {
-		userRepository.save(new User(usuario, senha, "Test", 1, 0));
 		User usuarioVerificado = userRepository.verificaLogin(usuario, senha);
 		if (usuarioVerificado != null) {
 			return ResponseEntity.ok().body(usuarioVerificado);

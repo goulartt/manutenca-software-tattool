@@ -117,8 +117,8 @@ public class ArtGridController implements Initializable{
 	 * 	##	ADICIONA IMAGEM A LISTA DE ARTES DO SERVICO AO CLICAR NA IMAGEM
 	 */
 	
-	void addArtToService(String text) {
-		createEdit.artsList.getItems().add(createEdit.addArtItem(text));
+	void addArtToService(Art a) {
+		createEdit.artsList.getItems().add(createEdit.addArtItem(a));
 	}
 	
 	private void resetColumns() {
@@ -194,7 +194,7 @@ public class ArtGridController implements Initializable{
 			});
 
 			setOnMouseClicked(event -> {
-				addArtToService(a.getDescription());
+				addArtToService(a);
 				createEdit.artModal.close();
 			});
 		}

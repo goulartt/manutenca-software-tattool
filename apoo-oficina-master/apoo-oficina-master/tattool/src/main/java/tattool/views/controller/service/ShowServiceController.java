@@ -1,5 +1,6 @@
 package tattool.views.controller.service;
 
+import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellDataFeatures;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Callback;
+import tattool.domain.model.Art;
 import tattool.domain.model.Session;
 import tattool.domain.modelfx.ServiceFX;
 import tattool.domain.modelfx.SessionFX;
@@ -62,10 +66,14 @@ public class ShowServiceController implements Initializable{
 	private List<Session> sessions = new ArrayList<>();
 	
 	private SessionRest rest = new SessionRest();
+
+	private List<Art> artes = new ArrayList<>();
     
-    public ShowServiceController(ServiceFX service2, List<Session> sessions) {
+    public ShowServiceController(ServiceFX service2, List<Session> sessions, List<Art> artes) {
     	this.service = service2;
     	this.sessions  = sessions;
+    	this.artes  = artes;
+    	
     }
     
 	@Override
@@ -159,9 +167,14 @@ public class ShowServiceController implements Initializable{
      */
     
     void populateArtsList() {
-    	for(int i = 0; i < 5; i++) {
-    		artsList.getItems().add(new ArtListItem("Nome da arte " + (i + 1)));
+    	if (!artes.isEmpty()) {
+    		for (Art art : artes) {
+    			artsList.getItems().add(new ArtListItem(art));
+    		}    		
+    	} else {
+			artsList.getItems().add(new ArtListItem());
     	}
+    
     }
     
     /*
@@ -179,5 +192,23 @@ public class ShowServiceController implements Initializable{
     		
     		getStyleClass().add("art-list-item");
     	}
+
+		public ArtListItem(Art art) {
+			setText(art.getDescription());
+    		Image img = new Image(new ByteArrayInputStream(art.getImage()));
+    		ImageView view2 = new ImageView(img);
+    		view2.autosize();
+    		view2.setFitHeight(250);
+    		view2.setFitWidth(250);
+
+    		setGraphic(view2);
+    		setGraphicTextGap(10);
+    		
+    		getStyleClass().add("art-list-item");
+		}
+
+		public ArtListItem() {
+    		setText("Nenhuma arte cadastrada!");
+		}
     }
 }

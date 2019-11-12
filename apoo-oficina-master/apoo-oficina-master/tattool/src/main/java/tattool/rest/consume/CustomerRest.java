@@ -23,47 +23,47 @@ public class CustomerRest {
 		return rest.getForObject(url, Customer[].class);
 
 	}
-	
+
 	public Customer findById(Integer id) {
 		String url = Constantes.Api.URL_API + "/customers/{codigo}";
-		
+
 		Map<String, Integer> params = new HashMap<String, Integer>();
-	    params.put("codigo", id); 
-	    return rest.getForObject(url, Customer.class);
+		params.put("codigo", id);
+		return rest.getForObject(url, Customer.class);
 	}
 
 	public Customer save(Customer customer) {
 		return rest.postForObject(Constantes.Api.URL_API + "/customers", customer, Customer.class);
 	}
-	
+
 	public void deleteCustomer(Integer id) {
-		String url = Constantes.Api.URL_API+"/customers/{codigo}";
-		
+		String url = Constantes.Api.URL_API + "/customers/{codigo}";
+
 		Map<String, Integer> params = new HashMap<String, Integer>();
-	    params.put("codigo", id);
-	     
-	    try {
-	    	rest.delete ( url,  params );
-	    }catch(Exception e) {
-	    	e.printStackTrace();
-	    }
+		params.put("codigo", id);
+
+		try {
+			rest.delete(url, params);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void atualizaCustomer(Integer id, Customer customer) {
-		String url = Constantes.Api.URL_API+"/customers/"+id;
+		String url = Constantes.Api.URL_API + "/customers/" + id;
 		HttpEntity<Customer> entity = new HttpEntity<Customer>(customer);
 		rest.exchange(url, HttpMethod.PUT, entity, Customer.class);
 	}
-	
-	public Cep buscaCep(String cep ) {
-		return rest.getForObject("http://viacep.com.br/ws/"+cep+"/json", Cep.class);
+
+	public Cep buscaCep(String cep) {
+		return rest.getForObject("http://viacep.com.br/ws/" + cep + "/json", Cep.class);
 	}
-	
+
 	public static void main(String[] args) {
 		Customer c = new Customer();
 		c.setName("teste2");
 		c.setCpf("cpf2");
-		//c.setBirthDate(new Date());
+		// c.setBirthDate(new Date());
 		c.getContact().setEmail("jv.goulart.almeida@hotmail.com");
 		c.getContact().setPhone("18 996501306");
 		c.getAddress().setCity("Assis");
@@ -75,9 +75,15 @@ public class CustomerRest {
 		customerSalvo.getContact().setEmail("emailteste");
 		customerSalvo.getAddress().setCity("assis");
 		rest.atualizaCustomer(customerSalvo.getId(), customerSalvo);
-		//rest.deleteCustomer(customerSalvo.getId());
-		
-		
-		
+		// rest.deleteCustomer(customerSalvo.getId());
+
+	}
+
+	public Customer findByEmail(String emailValidate) {
+		String url = Constantes.Api.URL_API + "/customers/{email}";
+
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("email", url);
+		return rest.getForObject(url, Customer.class);
 	}
 }

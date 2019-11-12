@@ -1,6 +1,8 @@
 package tattool.views.controller.art;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import com.jfoenix.controls.events.JFXDialogEvent;
 import de.jensd.fx.glyphs.octicons.OctIcon;
 import de.jensd.fx.glyphs.octicons.OctIconView;
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -21,6 +24,8 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -56,6 +61,9 @@ public class CreateArtController {
     
     @FXML
     private HBox tags;
+    
+    @FXML
+	private ImageView imagePreview;
     
     private File imageFile;
     
@@ -111,6 +119,14 @@ public class CreateArtController {
     	
     	if(imageFile != null) {
     		fileName.setText(imageFile.getName());
+            Image image = new Image(imageFile.toURI().toString());
+            
+            imagePreview.setImage(image);
+            imagePreview.setFitHeight(250);
+            imagePreview.setFitWidth(250);
+    		tags.getChildren().add(imagePreview);
+
+
     	}
     }
 

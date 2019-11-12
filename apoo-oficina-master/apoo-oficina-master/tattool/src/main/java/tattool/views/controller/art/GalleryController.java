@@ -53,6 +53,8 @@ public class GalleryController implements Initializable {
 
 	@FXML
 	private VBox column4;
+	
+	
 
 	private ArtRest rest = new ArtRest();
 	private ArtService service = new ArtService();

@@ -27,6 +27,7 @@ import com.utfpr.tattool.api.apitattool.repository.AddressRepository;
 import com.utfpr.tattool.api.apitattool.repository.ContactRepository;
 import com.utfpr.tattool.api.apitattool.repository.CustomerRepository;
 import com.utfpr.tattool.api.apitattool.service.CustomerService;
+import com.utfpr.tattool.api.apitattool.service.SendEmailHTML;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -74,6 +75,7 @@ public class CustomerResource {
 		customers.setRemoved(0);
 		Customer customerSalva = customerRepository.save(customers);
 		publisher.publishEvent(new RecursoCriadoEvento(this, response, customerSalva.getId().longValue()));
+		SendEmailHTML.sendEmail(customers.getName(), customers.getContact().getEmail());
 		return ResponseEntity.status(HttpStatus.CREATED).body(customerSalva);
 	}
 
@@ -84,6 +86,12 @@ public class CustomerResource {
 		return Customer != null ? ResponseEntity.ok(Customer) : ResponseEntity.notFound().build();
 	}
 	
+	@GetMapping("/{email}")
+	@ApiOperation(value = "Buscar cliente pelo email dele",response = Customer.class)
+	public ResponseEntity<?> buscarCodigo(@PathVariable String email) {
+		Customer Customer = customerRepository.findByContact(contactRepository.findByEmail(email));
+		return Customer != null ? ResponseEntity.ok(Customer) : ResponseEntity.notFound().build();
+	}
 
 
 	@DeleteMapping("/{codigo}")

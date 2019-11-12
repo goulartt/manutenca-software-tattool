@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
 
 <fx:root minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="804.0" stylesheets="@../../css/application.css" type="javafx.scene.layout.BorderPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tattool.views.controller.art.CreateArtController">
    <padding>
@@ -101,6 +102,13 @@
                <padding>
                   <Insets top="32.0" />
                </padding>
+             <children>
+                <ImageView fx:id="imagePreview" fitHeight="360.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+                   <effect>
+                      <DropShadow color="#00000066" height="15.0" radius="6.25" width="12.0" />
+                   </effect>
+                </ImageView>
+             </children>
             </BorderPane>
             <Label fx:id="errorImage" graphicTextGap="10.0" textFill="#e53935">
                <font>

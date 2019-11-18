@@ -50,7 +50,12 @@
                      <center>
                         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Label text="&lt;Não sei o que colocar aqui, pode ser formas de contato, seila&gt;">
+                              <Label text="Envie um e-mail para: jv.goulart.almeida@hotmail.com">
+                                 <font>
+                                    <Font name="Verdana" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Entre em contato com nosso suporte técnico através do número: (43) 998 149 208">
                                  <font>
                                     <Font name="Verdana" size="16.0" />
                                  </font>

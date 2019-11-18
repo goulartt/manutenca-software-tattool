@@ -12,9 +12,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import jfxtras.scene.control.agenda.*?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<fx:root minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="804.0" type="javafx.scene.layout.BorderPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tattool.views.controller.HomeController">
-   <top>
+
+<fx:root minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="804.0" stylesheets="@../../css/application.css" type="javafx.scene.layout.BorderPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tattool.views.controller.HomeController">
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+ <top>
       <BorderPane prefHeight="79.0" prefWidth="774.0" style="-fx-background-color: #2B2B2B;" BorderPane.alignment="CENTER">
          <left>
             <VBox alignment="CENTER_LEFT" prefHeight="79.0" prefWidth="297.0" BorderPane.alignment="CENTER">
@@ -99,25 +119,76 @@
          </effect>
       </BorderPane>
    </top>
-   <center>
-      <HBox xmlns:fx="http://javafx.com/fxml">
-         <BorderPane.margin>
-            <Insets right="12.0" top="12.0" />
-         </BorderPane.margin>
-         <Agenda id="agenda"/>
-      </HBox>
-   </center>
    <right>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="240.0" style="-fx-background-color: #2B2B2B;" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="cashierPanel" prefHeight="200.0" prefWidth="241.0" style="-fx-background-color: #2B2B2B;" BorderPane.alignment="CENTER">
+         
          <BorderPane.margin>
-            <Insets left="12.0" top="12.0" />
+            <Insets top="16.0" />
          </BorderPane.margin>
          <effect>
-            <DropShadow height="18.5" radius="8.125" width="16.0" />
+            <DropShadow color="#0000009c" height="22.0" radius="9.0" width="16.0" />
          </effect>
-      </VBox>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <bottom>
+            <BorderPane prefHeight="96.0" prefWidth="221.0" style="-fx-border-color: #26A69A transparent transparent transparent;" BorderPane.alignment="CENTER">
+               <left>
+                  <VBox prefHeight="120.0" prefWidth="83.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="Sessões:" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="16.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="26.0" text="Pago:" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="8.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="46.0" text="Total:" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="8.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="66.0" text="Balanço" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="8.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </left>
+               <BorderPane.margin>
+                  <Insets top="16.0" />
+               </BorderPane.margin>
+               <right>
+                 
+               </right>
+            </BorderPane>
+         </bottom>
+      </BorderPane>
    </right>
-   <padding>
-      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-   </padding>
+   <center>
+      <JFXTreeTableView fx:id="agendamentoTable" prefHeight="392.0" prefWidth="481.0" BorderPane.alignment="CENTER">
+         <columnResizePolicy>
+            <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <BorderPane.margin>
+            <Insets right="16.0" top="16.0" />
+         </BorderPane.margin>
+      </JFXTreeTableView>
+   </center>
 </fx:root>

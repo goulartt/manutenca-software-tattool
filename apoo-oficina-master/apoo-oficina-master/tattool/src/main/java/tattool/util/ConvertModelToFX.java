@@ -6,14 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.ObservableList;
-import javafx.util.Callback;
-import net.sf.jasperreports.engine.util.SortedIntList;
 import tattool.domain.model.Customer;
 import tattool.domain.model.Service;
 import tattool.domain.model.Session;
 import tattool.domain.model.User;
+import tattool.domain.modelfx.AgendamentoFX;
 import tattool.domain.modelfx.CustomerFX;
 import tattool.domain.modelfx.ServiceFX;
 import tattool.domain.modelfx.SessionCashierFX;
@@ -131,19 +128,19 @@ public class ConvertModelToFX {
 
 	public static List<SessionFX> convertListSessionToSessionFX(List<Session> findByService) {
 		List<SessionFX> sessionFX = new ArrayList<>();
-		if(!findByService.isEmpty()){
+		if (!findByService.isEmpty()) {
 			findByService.forEach(s -> {
 				SessionFX sessao = new SessionFX();
 				sessao.setId(s.getId());
-				
+
 				if (s.getDateSession() != null)
 					sessao.setDate(new SimpleStringProperty(DateUtil.DateToString(s.getDateSession())));
 				else
 					sessao.setDate(new SimpleStringProperty("Não agendado"));
-				
+
 				sessao.setDuration(new SimpleStringProperty(s.getDuration().toString()));
 				sessao.setObs(s.getObs().toString());
-				
+
 				if (s.getPrice() != null)
 					sessao.setPrice(new SimpleStringProperty(s.getPrice().toString()));
 				else
@@ -151,25 +148,25 @@ public class ConvertModelToFX {
 				sessao.setRemoved(s.getRemoved());
 				sessao.setService(s.getService());
 				sessao.setStatus(new SimpleStringProperty(s.getStatus()));
-			
+
 				sessionFX.add(sessao);
 			});
 		}
-		
+
 		return sessionFX;
 	}
 
 	public static Session converSessionFXtoSession(SessionFX s) {
 		Session sessao = new Session();
-		if(s != null) {
+		if (s != null) {
 			sessao.setId(s.getId());
-			if(s.getDate().get().equals("Não agendado"))
+			if (s.getDate().get().equals("Não agendado"))
 				sessao.setDateSession(null);
 			else
-			    sessao.setDateSession(DateUtil.StringToDate(s.getDate().get()));
+				sessao.setDateSession(DateUtil.StringToDate(s.getDate().get()));
 			sessao.setDuration(Integer.parseInt(s.getDuration().get()));
 			sessao.setObs(s.getObs());
-			if(s.getPrice().get().equals("Não acertado"))
+			if (s.getPrice().get().equals("Não acertado"))
 				sessao.setPrice(null);
 			else
 				sessao.setPrice(new BigDecimal(s.getPrice().get()));
@@ -178,31 +175,30 @@ public class ConvertModelToFX {
 			sessao.setStatus(s.getStatus().get());
 		}
 
-
 		return sessao;
 	}
 
 	public static List<SessionCashierFX> convertSessinToSessionCashierFX(Session[] findAll) {
 		List<Session> se = new ArrayList<>();
 		List<SessionCashierFX> cashier = new ArrayList<>();
-		if(findAll != null) {
+		if (findAll != null) {
 			se = Arrays.asList(findAll);
 			se.forEach(s -> {
 				SessionCashierFX cash = new SessionCashierFX();
-				
+
 				if (s.getDateSession() != null)
 					cash.setDate(new SimpleStringProperty(DateUtil.DateToString(s.getDateSession())));
 				else
 					cash.setDate(new SimpleStringProperty("Não agendado"));
-				
+
 				cash.setNomeServico(new SimpleStringProperty(s.getService().getNameService()));
 				cash.setDuration(s.getDuration());
-				
+
 				if (!s.getObs().equals(""))
 					cash.setObs(s.getObs().toString());
 				else
 					cash.setObs("");
-				
+
 				if (s.getPrice() != null)
 					cash.setPreco(new SimpleStringProperty(s.getPrice().toString()));
 				else
@@ -221,7 +217,7 @@ public class ConvertModelToFX {
 				cashier.add(cash);
 			});
 		}
-		
+
 		return cashier;
 	}
 
@@ -237,6 +233,42 @@ public class ConvertModelToFX {
 		session.setService(cashierSession.getService());
 		session.setStatus(cashierSession.getStatus());
 		return session;
+	}
+
+	public static List<AgendamentoFX> convertSessionToAgendamentoFX(Session[] findAll) {
+
+		List<AgendamentoFX> agendamentos = new ArrayList<>();
+		if (findAll != null) {
+			List<Session> sessions = Arrays.asList(findAll);
+			
+			for (Session session : sessions) {
+				AgendamentoFX agendamento = new AgendamentoFX();
+				
+				
+				
+				if (session.getDateSession() != null)
+					agendamento.setHora(new SimpleStringProperty(DateUtil.DateToString(session.getDateSession())));
+				else
+					continue;
+				
+				agendamento.setDuracao(new SimpleStringProperty(session.getDuration().toString()+" min"));
+
+				if (session.getService() != null)
+					agendamento.setCliente(new SimpleStringProperty(session.getService().getCustomer().getName()));
+				else
+					agendamento.setCliente(new SimpleStringProperty("Sem cliente"));
+
+				if (session.getPrice() != null)
+					agendamento.setPreco(new SimpleStringProperty("R$ "+session.getPrice().toString()));
+				else
+					agendamento.setPreco(new SimpleStringProperty("Não acertado"));
+				
+				agendamento.setId(session.getId());
+				
+				agendamentos.add(agendamento);
+			}
+		}
+		return agendamentos;
 	}
 
 }

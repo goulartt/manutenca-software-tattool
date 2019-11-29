@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import tattool.domain.model.Cep;
@@ -79,11 +80,18 @@ public class CustomerRest {
 
 	}
 
-	public Customer findByEmail(String emailValidate) {
-		String url = Constantes.Api.URL_API + "/customers/{email}";
+	public Boolean findByEmail(String emailValidate) {
+		String url = Constantes.Api.URL_API + "/customers/email/{email}";
 
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("email", url);
-		return rest.getForObject(url, Customer.class);
+		params.put("email", emailValidate);
+		rest.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+		try {
+			rest.getForObject(url, Customer.class, params);
+			return true;
+
+		} catch (HttpClientErrorException e) {
+			return false;
+		}
 	}
 }

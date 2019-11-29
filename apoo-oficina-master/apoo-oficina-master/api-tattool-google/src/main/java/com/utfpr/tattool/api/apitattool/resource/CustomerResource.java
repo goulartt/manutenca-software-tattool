@@ -86,7 +86,7 @@ public class CustomerResource {
 		return Customer != null ? ResponseEntity.ok(Customer) : ResponseEntity.notFound().build();
 	}
 	
-	@GetMapping("/{email}")
+	@GetMapping("/email/{email}")
 	@ApiOperation(value = "Buscar cliente pelo email dele",response = Customer.class)
 	public ResponseEntity<?> buscarCodigo(@PathVariable String email) {
 		Customer Customer = customerRepository.findByContact(contactRepository.findByEmail(email));

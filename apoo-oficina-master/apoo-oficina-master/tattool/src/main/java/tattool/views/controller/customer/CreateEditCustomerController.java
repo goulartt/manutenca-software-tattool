@@ -273,7 +273,7 @@ public class CreateEditCustomerController {
 		dialog.setOnDialogClosed(new EventHandler<JFXDialogEvent>() {
 			@Override
 			public void handle(JFXDialogEvent event) {
-				back((BorderPane) mainStack.lookup("#main"));
+				dialog.close();
 			}
 		});
 		dialog.show();
@@ -336,7 +336,7 @@ public class CreateEditCustomerController {
 				contact = true;
 			}
 			
-			if (rest.findByEmail(emailValidate) != null) {
+			if (!rest.findByEmail(emailValidate)) {
 				errorEmail.setText("Email já está cadastrado");
 				errorEmail.setVisible(true);
 				validate = false;
